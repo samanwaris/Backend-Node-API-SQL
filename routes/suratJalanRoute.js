@@ -4,6 +4,11 @@ import { getSuratJalan } from "../controllers/suratJalanController.js";
 import { verifyUser } from "../middleware/userMidleware.js";
 
 const router = express.Router();
-router.get("/getSuratJalan/:pageNumber/:pageSize", verifyUser, getSuratJalan);
+// router.get(
+//   "/getSuratJalanByPage/:pageNumber/:pageSize",
+//   verifyUser,
+//   getSuratJalan
+// );
+router.post("/getSuratJalan", verifyUser, getSuratJalan);
 
 export default router;

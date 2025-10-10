@@ -23,5 +23,12 @@ Content-Type: application/json
 
 ###
 // getSuratJalan
-GET http://localhost:5000/getSuratJalan/1/10
+POST  http://localhost:5000/getSuratJalan
 Content-Type: application/json
+
+{
+    "pageNumber": 0,
+    "pageSize": 10,
+    "kriteria": "",
+    "filterValue": ""
+}

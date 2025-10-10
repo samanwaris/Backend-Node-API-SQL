@@ -3,13 +3,18 @@ import sql from "mssql";
 
 export const getSuratJalan = async (req, res) => {
   try {
-    console.log(req.pageNumber, req.pageSize);
+    // console.log(req.pageNumber, req.pageSize, );
+    const { pageNumber, pageSize, kriteria, filterValue } = req.body;
     const conn = await getConnection();
     const result = await conn
       .request()
-      .input("pageNumber", sql.Int, req.params.pageNumber)
-      .input("pageSize", sql.Int, req.params.pageSize)
-      .query("EXEC web_GetSuratJalanPage @pageNumber, @pageSize");
+      .input("pageNumber", sql.Int, pageNumber)
+      .input("pageSize", sql.Int, pageSize)
+      .input("kriteria", sql.VarChar, kriteria)
+      .input("filterValue", sql.VarChar, filterValue)
+      .query(
+        "EXEC web_GetSuratJalanPage @pageNumber, @pageSize, @kriteria, @filterValue"
+      );
 
     const dataSJ = result.recordsets[0];
     // console.log(dataSJ);
